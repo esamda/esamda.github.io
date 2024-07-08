@@ -1,5 +1,5 @@
 ---
-import Default from "./DefaultArticle.astro";
+import BaseArticleLayout from "./BaseArticleLayout.astro";
 import Navbar from "../components/Navbar.astro";
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
@@ -9,7 +9,7 @@ type Props = CollectionEntry<"articles">["data"];
 const { title, description, date, cover_image } = Astro.props;
 ---
 
-<Default {title} {date} {cover_image} {description}>
+<BaseArticleLayout {title} {date} {cover_image} {description}>
     <header>
         <Navbar />
     </header>
@@ -53,4 +53,4 @@ const { title, description, date, cover_image } = Astro.props;
             <p>{image}</p>
             <slot /> -->
     </main>
-</Default>
+</BaseArticleLayout>
