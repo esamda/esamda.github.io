@@ -1,0 +1,31 @@
+---
+import "../main.css";
+import type { CollectionEntry } from "astro:content";
+import Head from "../components/Head.astro";
+import Body from "../components/Body.astro";
+
+type Props = CollectionEntry<"articles">["data"];
+
+const { title, description, date, cover_image } = Astro.props;
+
+const url = Astro.url.href;
+const imageUrl = `${Astro.url.origin}${cover_image}`;
+---
+
+<!doctype html>
+<html lang="en">
+    <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={url} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={imageUrl} />
+        <meta name="theme-color" content={"#0f172a"} data-react-helmet="true" />
+        <meta property="article:published_time" content={date.toISOString()} />
+    </Head>
+    <Body>
+        <slot />
+    </Body>
+</html>

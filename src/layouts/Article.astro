@@ -1,0 +1,56 @@
+---
+import Default from "./DefaultArticle.astro";
+import Navbar from "../components/Navbar.astro";
+import type { CollectionEntry } from "astro:content";
+import { Image } from "astro:assets";
+
+type Props = CollectionEntry<"articles">["data"];
+
+const { title, description, date, cover_image } = Astro.props;
+---
+
+<Default {title} {date} {cover_image} {description}>
+    <header>
+        <Navbar />
+    </header>
+    <main class="flex flex-col flex-wrap items-center justify-center py-2 lg:py-8">
+        <div class="mt-5 flex flex-col flex-wrap items-center lg:mt-8">
+            <div class="flex flex-col flex-wrap items-center">
+                <h1 class="text-center text-2xl font-bold lg:mx-10 lg:text-3xl">{title}</h1>
+                <div class="mt-2 inline-flex lg:mt-2">
+                    <p class="text-sm text-neutral-400 lg:text-xl">
+                        dibuat pada <time datetime={date.toISOString()}>
+                            {
+                                date.toLocaleDateString("id-ID", {
+                                    weekday: "long",
+                                    year: "numeric",
+                                    month: "long",
+                                    day: "numeric",
+                                })
+                            }
+                        </time>
+                    </p>
+                </div>
+            </div>
+            <div id="image" class="mt-6 flex lg:mx-14">
+                <Image
+                    src={cover_image}
+                    width={1920}
+                    height={1080}
+                    alt="Cover image"
+                    class="max-w-sm rounded-md lg:max-w-4xl"
+                />
+            </div>
+            <hr class="mt-2 min-w-full border-t-2 border-t-gray-700 opacity-20 lg:mt-8" />
+        </div>
+        <div class="mt-6 flex">
+            <article class="prose prose-sm prose-gray max-w-sm p-3 lg:prose-xl lg:max-w-5xl">
+                <slot />
+            </article>
+        </div>
+        <!-- 
+            <p>{updatedDate}</p>
+            <p>{image}</p>
+            <slot /> -->
+    </main>
+</Default>

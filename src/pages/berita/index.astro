@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import Card from "../../components/article/Card.astro";
+import Page from "../../layouts/Page.astro";
+
+function removeDoubleSlashes(link: string): string {
+    return link.replace(/(^https?:\/\/)|(\/{2,})/g, (_, p1) => p1 || "/");
+}
+
+const posts = (await getCollection("articles")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+// posts.forEach((post) => {
+//     console.log(`${removeDoubleSlashes(`${Astro.url.origin}${import.meta.env.BASE_URL}/berita/${post.slug}`)}`);
+// });
+---
+
+<Page>
+    <main class="flex flex-wrap py-2 lg:py-8">
+        <div id="posts" class="mx-auto grid grid-cols-1">
+            {
+                posts.map((post) => (
+                    <Card
+                        href={`${removeDoubleSlashes(`${Astro.url.origin}${import.meta.env.BASE_URL}/berita/${post.slug}`)}`}
+                        title={post.data.title}
+                        date={post.data.date}
+                        cover_image={post.data.cover_image}
+                        body={post.body}
+                    />
+                    // <li>
+                    //     <a href={`/blog/${post.slug}/`}>
+                    //         <img width={720} height={360} src={post.data.image} alt="" />
+                    //         <h4 class="title">{post.data.title}</h4>
+                    //         <p class="date">post.data.date</p>
+                    //     </a>
+                    // </li>
+                ))
+            }
+            <!-- <Card />
+            <Card />
+            <Card />
+            <Card /> -->
+        </div>
+    </main>
+</Page>
