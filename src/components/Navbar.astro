@@ -6,11 +6,15 @@ import Dropdown from "./navbar/Dropdown.astro";
 ---
 
 <nav
-    class="z-50 flex w-full flex-col flex-wrap bg-blue-900 px-4 text-gray-200 lg:flex-row lg:flex-nowrap lg:items-center lg:px-28"
+    class="bg-navbar text-navbar z-50 flex w-full flex-col flex-wrap px-4 lg:flex-row lg:flex-nowrap lg:items-center lg:px-28"
 >
     <Brand />
     <Navigation>
         <Link name="Home" redirect="/" />
         <Link name="Berita" redirect="/berita" />
+        <Dropdown name="Dropdown">
+            <Link name="Test" redirect="#" />
+            <Link name="Test" redirect="#" />
+        </Dropdown>
     </Navigation>
 </nav>

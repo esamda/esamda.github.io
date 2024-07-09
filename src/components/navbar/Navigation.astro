@@ -3,61 +3,61 @@
 ---
 
 <div class="z-0 flex h-full lg:ml-auto lg:mt-0">
-  <ul
-    class="px-4:flex-nowrap pointer-events-none absolute left-0 flex w-full list-none flex-col flex-wrap items-center opacity-0 transition-all ease-in-out lg:pointer-events-auto lg:relative lg:flex-row lg:opacity-100"
-    data-navbar-content
-  >
-    <slot />
-  </ul>
+    <ul
+        class="px-4:flex-nowrap pointer-events-none absolute left-0 flex w-full list-none flex-col flex-wrap items-center opacity-0 transition-all ease-in-out lg:pointer-events-auto lg:relative lg:flex-row lg:opacity-100"
+        data-navbar-content
+    >
+        <slot />
+    </ul>
 </div>
 
 <script>
-  // Navbar Dropdown Menu
-  const navbarDropdownBtn = document.querySelectorAll("[data-dropdown]");
+    // Navbar Dropdown Menu
+    const navbarDropdownBtn = document.querySelectorAll("[data-dropdown]");
 
-  // Function to close all dropdowns
-  function closeAllDropdowns() {
-    navbarDropdownBtn.forEach((dropdown) => {
-      const dropdownContent = dropdown.querySelector("ul");
-      const dropdownArrow = dropdown.querySelector("p > svg");
-      dropdownContent?.classList.add("hidden");
-      dropdownContent?.classList.remove("flex");
-      dropdownArrow?.classList.remove("rotate-180");
-    });
-  }
-
-  // If user clicks outside of dropdown, close all dropdown.
-  document.addEventListener("click", (event) => {
-    const isDropdownClick = Array.from(navbarDropdownBtn).some((dropdown) => {
-      const dropdownTarget = dropdown.querySelector("ul");
-      return dropdownTarget && dropdownTarget.contains(event.target as Node);
-    });
-
-    if (!isDropdownClick) {
-      closeAllDropdowns();
+    // Function to close all dropdowns
+    function closeAllDropdowns() {
+        navbarDropdownBtn.forEach((dropdown) => {
+            const dropdownContent = dropdown.querySelector("ul");
+            const dropdownArrow = dropdown.querySelector("p > svg");
+            dropdownContent?.classList.add("hidden");
+            dropdownContent?.classList.remove("flex");
+            dropdownArrow?.classList.remove("rotate-180");
+        });
     }
-  });
 
-  navbarDropdownBtn.forEach((el) => {
-    const dropdownContent = el.querySelector("ul");
-    const dropdownArrow = el.querySelector("p > svg");
+    // If user clicks outside of dropdown, close all dropdown.
+    document.addEventListener("click", (event) => {
+        const isDropdownClick = Array.from(navbarDropdownBtn).some((dropdown) => {
+            const dropdownTarget = dropdown.querySelector("ul");
+            return dropdownTarget && dropdownTarget.contains(event.target as Node);
+        });
 
-    el?.querySelector("p")?.addEventListener("click", (event) => {
-      // Check if the clicked dropdown is already open
-      const isOpen = dropdownContent?.classList.contains("flex");
-
-      // Close all dropdowns
-      closeAllDropdowns();
-
-      if (!isOpen) {
-        // Toggle the selected dropdown
-        dropdownContent?.classList.toggle("hidden");
-        dropdownContent?.classList.toggle("flex");
-        dropdownArrow?.classList.toggle("rotate-180");
-
-        // Prevent the document click event from closing this dropdown immediately
-        event.stopPropagation();
-      }
+        if (!isDropdownClick) {
+            closeAllDropdowns();
+        }
     });
-  });
+
+    navbarDropdownBtn.forEach((el) => {
+        const dropdownContent = el.querySelector("ul");
+        const dropdownArrow = el.querySelector("p > svg");
+
+        el?.querySelector("p")?.addEventListener("click", (event) => {
+            // Check if the clicked dropdown is already open
+            const isOpen = dropdownContent?.classList.contains("flex");
+
+            // Close all dropdowns
+            closeAllDropdowns();
+
+            if (!isOpen) {
+                // Toggle the selected dropdown
+                dropdownContent?.classList.toggle("hidden");
+                dropdownContent?.classList.toggle("flex");
+                dropdownArrow?.classList.toggle("rotate-180");
+
+                // Prevent the document click event from closing this dropdown immediately
+                event.stopPropagation();
+            }
+        });
+    });
 </script>
