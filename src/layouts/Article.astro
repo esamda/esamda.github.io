@@ -13,10 +13,10 @@ const { title, description, date, cover_image } = Astro.props;
     <header>
         <Navbar />
     </header>
-    <main class="flex flex-col flex-wrap items-center justify-center py-2 lg:py-8">
+    <main data-pagefind-body class="flex flex-col flex-wrap items-center justify-center py-2 lg:py-8">
         <div class="mt-5 flex flex-col flex-wrap items-center lg:mt-8">
             <div class="flex flex-col flex-wrap items-center">
-                <h1 class="text-center text-2xl font-bold lg:mx-10 lg:text-3xl">{title}</h1>
+                <h1 data-pagefind-weight="8.0" class="text-center text-2xl font-bold lg:mx-10 lg:text-3xl">{title}</h1>
                 <div class="mt-2 inline-flex lg:mt-2">
                     <p class="text-sm text-neutral-400 lg:text-xl">
                         dibuat pada <time datetime={date.toISOString()}>
