@@ -155,7 +155,7 @@ import { Icon } from "astro-icon/components";
 
         async function loadPagefind() {
             const pf = "/pagefind/pagefind.js";
-            return await import(pf);
+            return await import(/* @vite-ignore */ pf);
         }
 
         window.addEventListener("DOMContentLoaded", async () => {
