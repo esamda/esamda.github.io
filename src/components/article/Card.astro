@@ -1,4 +1,5 @@
 ---
+import { truncateText } from "../../utilities";
 import type { CollectionEntry } from "astro:content";
 
 type schema = CollectionEntry<"articles">["data"];
@@ -10,7 +11,7 @@ interface Props extends schema {
 
 const { title, href, date, cover_image, body } = Astro.props;
 
-const description = body.replace(/[\r\n\t\f\v ]+/g, " ").substring(0, 250) + "...";
+const description = truncateText(body);
 // console.log(body);
 // const imageWidth = 720;
 // const imageHeight = 360;

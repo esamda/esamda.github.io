@@ -1,5 +1,6 @@
 ---
 import "../main.css";
+import { truncateText } from "../utilities";
 import Colors from "tailwindcss/colors";
 import type { CollectionEntry } from "astro:content";
 import Head from "../components/base/Head.astro";
@@ -14,7 +15,10 @@ interface Props extends schema {
 
 const { title, date, cover_image, body } = Astro.props;
 
-const description = body.replace(/[\r\n\t\f\v ]+/g, " ").substring(0, 247) + "...";
+// the reason were using 247 here is that the additional '...'
+// adds 3 characters to the text, so to have a limit of 250
+// we subtract 3
+const description = truncateText(body, 247);
 
 const url = Astro.url.href;
 

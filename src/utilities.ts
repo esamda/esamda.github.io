@@ -11,10 +11,13 @@ export function isUrl(str: string): boolean {
     }
 }
 
-// change the name of this func pls
 export function formatPathOrUrl(base_urL: string, str: string): string {
     if (!isUrl(str)) {
         return removeDoubleSlashes(`${base_urL}/${str}`);
     }
     return str;
+}
+
+export function truncateText(str: string, length: number = 250) {
+    return str.replace(/[\r\n\t\f\v ]+/g, " ").substring(0) + "...";
 }
