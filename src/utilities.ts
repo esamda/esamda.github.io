@@ -14,7 +14,7 @@ export function isUrl(str: string): boolean {
 // change the name of this func pls
 export function formatPathOrUrl(base_urL: string, str: string): string {
     if (!isUrl(str)) {
-        return removeDoubleSlashes(`${import.meta.env.BASE_URL}/${str}`);
+        return removeDoubleSlashes(`${base_urL}/${str}`);
     }
     return str;
 }
