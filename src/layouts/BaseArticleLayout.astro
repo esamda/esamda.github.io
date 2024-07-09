@@ -1,5 +1,6 @@
 ---
 import "../main.css";
+import Colors from "tailwindcss/colors";
 import type { CollectionEntry } from "astro:content";
 import Head from "../components/base/Head.astro";
 import Body from "../components/base/Body.astro";
@@ -38,7 +39,7 @@ if (isUrl(cover_image)) {
         <meta property="og:url" content={url} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={imageUrl} data-pagefind-meta="image[content]" />
-        <meta name="theme-color" content={"#0f172a"} data-react-helmet="true" />
+        <meta name="theme-color" content={Colors.blue[600]} data-react-helmet="true" />
         <meta
             property="article:published_time"
             content={date.toISOString()}
