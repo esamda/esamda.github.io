@@ -23,7 +23,7 @@ import { Image } from "astro:assets";
     // Navbar Hamburger
     document.addEventListener("DOMContentLoaded", () => {
         const navbarHamburger = document.querySelector("[data-navbar-hamburger-btn]");
-        console.log(navbarHamburger);
+        // console.log(navbarHamburger);
         const navbarContent = document.querySelector("[data-navbar-content]");
 
         navbarHamburger?.addEventListener("click", (el) => {
@@ -31,7 +31,7 @@ import { Image } from "astro:assets";
             navbarContent?.classList.toggle("opacity-0");
             navbarContent?.classList.toggle("pointer-events-none");
 
-            console.log(navbarContent);
+            // console.log(navbarContent);
         });
     });
 </script>
