@@ -1,5 +1,5 @@
 export function removeDoubleSlashes(link: string): string {
-    return link.replace(/\/\/+/g, "/");
+    return link.replace(/(https?:\/\/)|(\/{2,})/g, (match, p1, p2) => p1 || "/");
 }
 
 export function isUrl(str: string): boolean {
