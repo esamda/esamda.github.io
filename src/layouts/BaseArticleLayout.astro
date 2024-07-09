@@ -3,13 +3,23 @@ import "../main.css";
 import type { CollectionEntry } from "astro:content";
 import Head from "../components/Head.astro";
 import Body from "../components/Body.astro";
+import { isUrl, formatPathOrUrl } from "../utilities";
 
 type Props = CollectionEntry<"articles">["data"];
 
 const { title, description, date, cover_image } = Astro.props;
 
 const url = Astro.url.href;
-const imageUrl = `${Astro.url.origin}${cover_image}`;
+
+let imageUrl;
+
+if (isUrl(cover_image)) {
+    imageUrl = cover_image;
+} else {
+    imageUrl = formatPathOrUrl(Astro.url.origin, cover_image);
+}
+
+// const imageUrl = `${Astro.url.origin}${cover_image}`;
 ---
 
 <!doctype html>
