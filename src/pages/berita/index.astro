@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import Card from "../../components/article/Card.astro";
 import SearchBar from "../../components/pagefind/SearchBar.astro";
 import Page from "../../layouts/Page.astro";
+import Banner from "../../components/Banner.astro";
 
 function removeDoubleSlashes(link: string): string {
     return link.replace(/(^https?:\/\/)|(\/{2,})/g, (_, p1) => p1 || "/");
@@ -12,6 +13,7 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
 ---
 
 <Page>
+    <Banner title="Berita" />
     <main class="flex py-2 lg:py-8">
         <div class="mx-auto flex flex-col lg:flex-row">
             <div class="flex flex-col">
