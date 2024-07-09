@@ -39,7 +39,7 @@ if (isUrl(cover_image)) {
         <title>{title}</title>
         <meta property="og:title" content={title} data-pagefind-meta="title[content]" />
         <meta property="og:description" content={description} />
-        <meta property="og:type" content="article" />
+        <meta property="og:type" content="article" data-pagefind-filter="type[content]" />
         <meta property="og:url" content={url} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content={imageUrl} data-pagefind-meta="image[content]" />

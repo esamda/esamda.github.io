@@ -154,21 +154,17 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
 
             resultsContainer.appendChild(a);
             resultsContainer.appendChild(hr);
-            console.log(`added ${href}`);
         }
 
         function clearResults() {
-            console.log("cleared result");
             resultsContainer.innerHTML = "";
         }
 
         function showArticlesContainer() {
-            console.log("show articles container");
             articlesContainer.classList.toggle("hidden", false);
         }
 
         function hideArticlesContainer() {
-            console.log("hide articles container");
             articlesContainer.classList.toggle("hidden", true);
         }
 
@@ -219,9 +215,9 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
                     showArticlesContainer();
                     return;
                 }
-                const search = await pagefind.search(input);
+                const search = await pagefind.search(input, { filters: { type: "articles" } });
                 const results = await Promise.all(search.results.map((result: any) => result.data()));
-                console.log(results);
+                // console.log(results);
                 if (results.length == 0) {
                     displayNotFound();
                     showArticlesContainer();
