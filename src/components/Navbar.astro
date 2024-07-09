@@ -11,10 +11,10 @@ import Dropdown from "./navbar/Dropdown.astro";
     <Brand />
     <Navigation>
         <Link name="Home" redirect="/" />
-        <Link name="Berita" redirect="/berita" />
-        <Dropdown name="Dropdown">
-            <Link dropdown name="asdasdasdasd" redirect="#" />
-            <Link dropdown name="Test" redirect="#" />
+        <Dropdown name="Profil">
+            <Link dropdown name="Visi & Misi" redirect="/profil/visi-dan-misi" />
+            <Link dropdown name="Struktur Organisasi" redirect="/profil/struktur-organisasi" />
         </Dropdown>
+        <Link name="Berita" redirect="/berita" />
     </Navigation>
 </nav>
