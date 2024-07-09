@@ -5,9 +5,15 @@ import Head from "../components/Head.astro";
 import Body from "../components/Body.astro";
 import { isUrl, formatPathOrUrl } from "../utilities";
 
-type Props = CollectionEntry<"articles">["data"];
+type schema = CollectionEntry<"articles">["data"];
 
-const { title, description, date, cover_image } = Astro.props;
+interface Props extends schema {
+    body: string;
+}
+
+const { title, date, cover_image, body } = Astro.props;
+
+const description = body.replace(/[\r\n\t\f\v ]+/g, " ").substring(0, 247) + "...";
 
 const url = Astro.url.href;
 

@@ -4,12 +4,16 @@ import Navbar from "../components/Navbar.astro";
 import type { CollectionEntry } from "astro:content";
 import { Image } from "astro:assets";
 
-type Props = CollectionEntry<"articles">["data"];
+type schema = CollectionEntry<"articles">["data"];
 
-const { title, description, date, cover_image } = Astro.props;
+interface Props extends schema {
+    body: string;
+}
+
+const { title, date, cover_image, body } = Astro.props;
 ---
 
-<BaseArticleLayout {title} {date} {cover_image} {description}>
+<BaseArticleLayout {title} {date} {cover_image} {body}>
     <header>
         <Navbar />
     </header>

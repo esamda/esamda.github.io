@@ -16,6 +16,6 @@ const article = Astro.props;
 const { Content } = await article.render();
 ---
 
-<Article {...article.data}>
+<Article {...article.data} body={article.body}>
     <Content />
 </Article>
