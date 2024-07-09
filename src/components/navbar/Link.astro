@@ -1,17 +1,17 @@
 ---
 interface Props {
-  name: string;
-  redirect: string;
-  dropdown?: boolean | null;
+    name: string;
+    redirect: string;
+    dropdown?: boolean | null;
 }
 
 const { name, redirect, dropdown } = Astro.props;
 ---
 
 <li class="relative z-50 w-full lg:w-auto">
-  <a
-    class="relative z-50 flex w-full cursor-pointer items-center justify-center bg-blue-900 py-4 transition-colors ease-in-out hover:bg-blue-950 lg:h-auto lg:w-auto lg:px-6"
-    class:list={[{ "lg:py-8": !dropdown }]}
-    href={redirect}>{name}</a
-  >
+    <a
+        class="relative z-50 flex w-full cursor-pointer items-center justify-center py-4 transition-all ease-in-out hover:backdrop-brightness-75 lg:h-auto lg:w-auto lg:px-6"
+        class:list={[{ "lg:py-8": !dropdown }]}
+        href={redirect}>{name}</a
+    >
 </li>
