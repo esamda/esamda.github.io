@@ -1,8 +1,8 @@
 ---
 import "../main.css";
 import type { CollectionEntry } from "astro:content";
-import Head from "../components/Head.astro";
-import Body from "../components/Body.astro";
+import Head from "../components/base/Head.astro";
+import Body from "../components/base/Body.astro";
 import { isUrl, formatPathOrUrl } from "../utilities";
 
 type schema = CollectionEntry<"articles">["data"];
