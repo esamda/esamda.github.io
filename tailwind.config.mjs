@@ -12,6 +12,9 @@ export default {
             textColor: {
                 navbar: colors.white,
             },
+            backgroundImage: {
+                banner: "url('/images/banner-background-2.jpg')",
+            },
         },
     },
     plugins: [require("@tailwindcss/typography")],
