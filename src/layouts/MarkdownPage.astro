@@ -1,0 +1,43 @@
+---
+import { truncateText } from "../utilities";
+import Colors from "tailwindcss/colors";
+import Head from "../components/base/Head.astro";
+import Body from "../components/base/Body.astro";
+import Navbar from "../components/Navbar.astro";
+import Banner from "../components/Banner.astro";
+import type { MarkdownLayoutProps } from "astro";
+
+type Props = MarkdownLayoutProps<{
+    title: string;
+}>;
+
+const { frontmatter, rawContent } = Astro.props;
+
+const { title } = frontmatter;
+const description = truncateText(rawContent(), 247);
+---
+
+<!doctype html>
+<html lang="id">
+    <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} data-pagefind-meta="title[content]" />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={Astro.url.href} />
+        <meta name="theme-color" content={Colors.blue[600]} data-react-helmet="true" />
+    </Head>
+    <Body>
+        <header>
+            <Navbar />
+        </header>
+        <Banner title={title} />
+        <main class="flex flex-col flex-wrap items-center justify-center py-2 lg:py-8">
+            <div class="mt-6 flex">
+                <article class="prose prose-sm prose-gray max-w-sm p-3 lg:prose-xl lg:max-w-5xl">
+                    <slot />
+                </article>
+            </div>
+        </main>
+    </Body>
+</html>
