@@ -1,5 +1,5 @@
 ---
-import { isUrl, formatPathOrURL } from "../utilities";
+import { isURL, formatPathOrURL } from "../utilities";
 interface Props {
     title: string;
     image?: string;
@@ -12,7 +12,7 @@ let imageUrl = image;
 if (!imageUrl) {
     // default image if none is specified
     imageUrl = formatPathOrURL(Astro.url.origin, "/images/banner-background-2.jpg");
-} else if (isUrl(imageUrl)) {
+} else if (isURL(imageUrl)) {
     imageUrl = imageUrl;
 } else {
     imageUrl = formatPathOrURL(Astro.url.origin, imageUrl);
