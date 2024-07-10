@@ -1,5 +1,5 @@
 ---
-import { isUrl, formatPathOrUrl } from "../utilities";
+import { isUrl, formatPathOrURL } from "../utilities";
 interface Props {
     title: string;
     image?: string;
@@ -11,14 +11,14 @@ let imageUrl = image;
 
 if (!imageUrl) {
     // default image if none is specified
-    imageUrl = formatPathOrUrl(Astro.url.origin, "/images/banner-background-2.jpg");
+    imageUrl = formatPathOrURL(Astro.url.origin, "/images/banner-background-2.jpg");
 } else if (isUrl(imageUrl)) {
     imageUrl = imageUrl;
 } else {
-    imageUrl = formatPathOrUrl(Astro.url.origin, imageUrl);
+    imageUrl = formatPathOrURL(Astro.url.origin, imageUrl);
 }
 ---
 
-<div class="bg-banner flex min-h-48 min-w-full items-center justify-center bg-cover bg-center bg-no-repeat text-white">
+<div class="flex min-h-48 min-w-full items-center justify-center bg-banner bg-cover bg-center bg-no-repeat text-white">
     <h1 class="text-3xl font-semibold lg:text-5xl">{title}</h1>
 </div>

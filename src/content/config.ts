@@ -1,5 +1,5 @@
 import { defineCollection, z } from "astro:content";
-import { formatPathOrUrl } from "../utilities";
+import { formatPathOrURL } from "../utilities";
 
 const articles = defineCollection({
     type: "content",
@@ -7,7 +7,7 @@ const articles = defineCollection({
     schema: z.object({
         title: z.string(),
         date: z.coerce.date(),
-        cover_image: z.preprocess((i) => formatPathOrUrl(import.meta.env.BASE_URL, String(i)), z.string()),
+        cover_image: z.preprocess((i) => formatPathOrURL(import.meta.env.BASE_URL, String(i)), z.string()),
     }),
 });
 

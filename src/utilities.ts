@@ -11,9 +11,9 @@ export function isUrl(str: string): boolean {
     }
 }
 
-export function formatPathOrUrl(base_urL: string, str: string): string {
+export function formatPathOrURL(base_url: string, str: string): string {
     if (!isUrl(str)) {
-        return removeDoubleSlashes(`${base_urL}/${str}`);
+        return removeDoubleSlashes(`${base_url}/${str}`);
     }
     return str;
 }

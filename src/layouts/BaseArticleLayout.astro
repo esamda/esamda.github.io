@@ -5,7 +5,7 @@ import Colors from "tailwindcss/colors";
 import type { CollectionEntry } from "astro:content";
 import Head from "../components/base/Head.astro";
 import Body from "../components/base/Body.astro";
-import { isUrl, formatPathOrUrl } from "../utilities";
+import { isUrl, formatPathOrURL } from "../utilities";
 
 type schema = CollectionEntry<"articles">["data"];
 
@@ -27,7 +27,7 @@ let imageUrl;
 if (isUrl(cover_image)) {
     imageUrl = cover_image;
 } else {
-    imageUrl = formatPathOrUrl(Astro.url.origin, cover_image);
+    imageUrl = formatPathOrURL(Astro.url.origin, cover_image);
 }
 
 // const imageUrl = `${Astro.url.origin}${cover_image}`;
