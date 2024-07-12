@@ -11,14 +11,17 @@ let imageUrl = image;
 
 if (!imageUrl) {
     // default image if none is specified
-    imageUrl = formatPathOrURL(Astro.url.origin, "/images/banner-background-2.jpg");
+    imageUrl = formatPathOrURL(`${Astro.url.origin}${import.meta.env.BASE_URL}`, "/images/banner-background-2.jpg");
 } else if (isURL(imageUrl)) {
     imageUrl = imageUrl;
 } else {
-    imageUrl = formatPathOrURL(Astro.url.origin, imageUrl);
+    imageUrl = formatPathOrURL(`${Astro.url.origin}${import.meta.env.BASE_URL}`, imageUrl);
 }
 ---
 
-<div class="flex min-h-48 min-w-full items-center justify-center bg-banner bg-cover bg-center bg-no-repeat text-white">
+<div
+    class="flex min-h-48 min-w-full items-center justify-center bg-banner bg-cover bg-center bg-no-repeat text-white"
+    style=`background-image: url("${imageUrl}");`
+>
     <h1 class="text-3xl font-semibold lg:text-5xl">{title}</h1>
 </div>
