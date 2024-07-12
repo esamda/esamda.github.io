@@ -21,3 +21,17 @@ export function formatPathOrURL(base_url: string, str: string): string {
 export function truncateText(str: string, length: number = 250) {
     return str.replace(/[\r\n\t\f\v ]+/g, " ").substring(0, length) + "...";
 }
+
+/** Function to prepend base URL to image paths */
+export function prependBaseUrl(markdown: string, baseUrl: string): string {
+    return markdown.replace(/!\[(.*?)\]\((.*?)\)/g, (match, altText, url) => {
+        if (!url.startsWith("http") && !url.startsWith("/")) {
+            url = `/${url}`;
+        }
+
+        if (!url.startsWith("http") && !url.startsWith(baseUrl)) {
+            url = baseUrl + url;
+        }
+        return `![${altText}](${url})`;
+    });
+}
