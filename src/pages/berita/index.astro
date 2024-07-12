@@ -215,7 +215,7 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
                     showArticlesContainer();
                     return;
                 }
-                const search = await pagefind.search(input, { filters: { type: "articles" } });
+                const search = await pagefind.search(input, { filters: { type: "article" } });
                 const results = await Promise.all(search.results.map((result: any) => result.data()));
                 // console.log(results);
                 if (results.length == 0) {
