@@ -4,10 +4,9 @@ import Card from "../../components/article/Card.astro";
 import SearchBar from "../../components/pagefind/SearchBar.astro";
 import Page from "../../layouts/Page.astro";
 import Banner from "../../components/Banner.astro";
+import { formatPathOrURL, removeDoubleSlashes } from "../../utilities";
 
-function removeDoubleSlashes(link: string): string {
-    return link.replace(/(^https?:\/\/)|(\/{2,})/g, (_, p1) => p1 || "/");
-}
+const pf = formatPathOrURL(import.meta.env.BASE_URL, "/pagefind/pagefind.js");
 
 const posts = (await getCollection("articles")).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
@@ -47,19 +46,15 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
             </div>
         </div>
     </main>
-    <script>
-        // @ts-ignore
-        const articlesContainer: HTMLDivElement = document.getElementById("search-articles");
-        // @ts-ignore
-        const resultsContainer: HTMLDivElement = document.getElementById("search-results");
-        // @ts-ignore
-        const notFoundText: HTMLDivElement = document.getElementById("search-notfound");
-        // @ts-ignore
-        const searchBarBorder: HTMLDivElement = document.getElementById("search-bar-border");
+    <script define:vars={{ pf }} is:inline>
+        const articlesContainer = document.getElementById("search-articles");
+        const resultsContainer = document.getElementById("search-results");
+        const notFoundText = document.getElementById("search-notfound");
+        const searchBarBorder = document.getElementById("search-bar-border");
 
         //  Creates a new card element on #search-results.
         //! Will need to be updated manually if `components/article/Card.astro` changes
-        function addResult(title: string, href: string, date_str: string, cover_image: string, body: string) {
+        function addResult(title, href, date_str, cover_image, body) {
             const description = body.replace(/[\r\n\t\f\v ]+/g, " ").substring(0, 250) + "...";
 
             const a = document.createElement("a");
@@ -179,22 +174,20 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
         }
 
         async function loadPagefind() {
-            const pf = "/pagefind/pagefind.js";
+            // const pf = "/pagefind/pagefind.js";
+            console.log(pf);
             return await import(/* @vite-ignore */ pf);
         }
 
         window.addEventListener("DOMContentLoaded", async () => {
-            // @ts-ignore
             const pagefind = await loadPagefind();
 
             pagefind.init();
 
-            // @ts-ignore
-            const searchForm: HTMLFormElement = document.getElementById("search-form");
-            // @ts-ignore
-            const searchInput: HTMLInputElement = document.getElementById("search-input");
+            const searchForm = document.getElementById("search-form");
+            const searchInput = document.getElementById("search-input");
 
-            let timeout: NodeJS.Timeout | undefined;
+            let timeout;
 
             searchInput.addEventListener("input", async () => {
                 clearTimeout(timeout);
@@ -216,7 +209,7 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
                     return;
                 }
                 const search = await pagefind.search(input, { filters: { type: "article" } });
-                const results = await Promise.all(search.results.map((result: any) => result.data()));
+                const results = await Promise.all(search.results.map((result) => result.data()));
                 // console.log(results);
                 if (results.length == 0) {
                     displayNotFound();
