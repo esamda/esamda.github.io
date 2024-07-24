@@ -175,7 +175,7 @@ const posts = (await getCollection("articles")).sort((a, b) => b.data.date.value
 
         async function loadPagefind() {
             // const pf = "/pagefind/pagefind.js";
-            console.log(pf);
+            // console.log(pf);
             return await import(/* @vite-ignore */ pf);
         }
 
