@@ -1,0 +1,38 @@
+---
+import Logo from "../../../public/images/brand/logo.png";
+import Text from "../../../public/images/brand/brand-text.svg";
+import { Image } from "astro:assets";
+import { formatPathOrURL } from "../../utilities";
+---
+
+<div class="z-50 my-4 flex flex-row flex-nowrap items-center">
+    <a href={formatPathOrURL(import.meta.env.BASE_URL, "/")} class="flex">
+        <Image src={Logo} alt="Logo" width={128} height={128} class="pointer-events-none mr-2 h-14 w-14 min-w-14" />
+        <Image src={Text} alt="ESAMDA: SMP Negeri 2 Sambit" height={32} class="pointer-events-none w-32 min-w-32" />
+    </a>
+
+    <div class="ml-auto flex lg:hidden">
+        <button class="navbar-burger flex items-center p-3" data-navbar-hamburger-btn>
+            <svg class="block h-4 w-4 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+    // Navbar Hamburger
+    document.addEventListener("DOMContentLoaded", () => {
+        const navbarHamburger = document.querySelector("[data-navbar-hamburger-btn]");
+        // console.log(navbarHamburger);
+        const navbarContent = document.querySelector("[data-navbar-content]");
+
+        navbarHamburger?.addEventListener("click", (el) => {
+            navbarContent?.classList.toggle("opacity-100");
+            navbarContent?.classList.toggle("opacity-0");
+            navbarContent?.classList.toggle("pointer-events-none");
+
+            // console.log(navbarContent);
+        });
+    });
+</script>

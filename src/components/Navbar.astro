@@ -1,0 +1,20 @@
+---
+import Brand from "./navbar/Brand.astro";
+import Navigation from "./navbar/Navigation.astro";
+import Link from "./navbar/Link.astro";
+import Dropdown from "./navbar/Dropdown.astro";
+---
+
+<nav
+    class="bg-navbar text-navbar z-50 flex w-full flex-col flex-wrap px-4 lg:flex-row lg:flex-nowrap lg:items-center lg:px-28"
+>
+    <Brand />
+    <Navigation>
+        <Link name="Home" redirect="/" />
+        <Dropdown name="Profil">
+            <Link dropdown name="Visi & Misi" redirect="/profil/visi-dan-misi" />
+            <Link dropdown name="Struktur Organisasi" redirect="/profil/struktur-organisasi" />
+        </Dropdown>
+        <Link name="Berita" redirect="/berita" />
+    </Navigation>
+</nav>

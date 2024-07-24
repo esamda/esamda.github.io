@@ -1,0 +1,59 @@
+---
+import { truncateText } from "../../utilities";
+import type { CollectionEntry } from "astro:content";
+
+type schema = CollectionEntry<"articles">["data"];
+
+interface Props extends schema {
+    href: string;
+    body: string;
+}
+
+const { title, href, date, cover_image, body } = Astro.props;
+
+const description = truncateText(body);
+// console.log(body);
+// const imageWidth = 720;
+// const imageHeight = 360;
+---
+
+<a class="transition-color group flex rounded-lg duration-150 hover:bg-blue-50" href={href}>
+    <div class="flex cursor-pointer flex-col content-center justify-between rounded-lg p-4 lg:flex-row">
+        <div class="flex min-h-fit min-w-fit items-center justify-center">
+            <img
+                src={cover_image}
+                alt={""}
+                width={360}
+                height={360}
+                class="h-44 max-w-sm rounded-sm object-cover transition-all duration-150 lg:h-44 lg:w-72"
+            />
+        </div>
+        <div class="mt-2 flex max-w-xl flex-col flex-wrap items-start lg:ml-4 lg:mt-0">
+            <h1
+                id="title"
+                class="text-justify text-2xl font-semibold transition-colors duration-150 group-hover:text-blue-500 lg:text-start"
+            >
+                {title}
+            </h1>
+            <p id="date" class="mt-1 text-sm text-neutral-400 transition-colors duration-150 lg:mt-2">
+                dibuat pada <time datetime={date.toISOString()}>
+                    {
+                        date.toLocaleDateString("id-ID", {
+                            weekday: "long",
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                        })
+                    }
+                </time>
+            </p>
+            <p id="description" class="text-md mt-2 text-justify lg:mt-auto">
+                {description}
+            </p>
+        </div>
+        <!-- <div id="read-more" class="flex">
+            <p><Icon name="mdi:arrow-right-circle-outline" /> Read More</p>
+        </div> -->
+    </div>
+</a>
+<hr class="mb-6 min-w-full border-t-2 border-t-gray-700 opacity-20 lg:mt-4" />

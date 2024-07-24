@@ -1,0 +1,25 @@
+---
+import "../main.css";
+import Colors from 'tailwindcss/colors';
+import Head from "../components/base/Head.astro";
+import Body from "../components/base/Body.astro";
+
+interface Props {
+    title?: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="id">
+    <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} />
+
+        <meta name="theme-color" content={Colors.blue[600]} data-react-helmet="true" />
+    </Head>
+    <Body>
+        <slot />
+    </Body>
+</html>

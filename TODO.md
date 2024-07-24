@@ -1,0 +1,3 @@
+-   [ ] Add carousel
+-   [ ] Add footer
+-   [ ] Add album (content collection)

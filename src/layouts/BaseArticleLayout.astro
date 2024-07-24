@@ -1,0 +1,56 @@
+---
+import "../main.css";
+import { truncateText } from "../utilities";
+import Colors from "tailwindcss/colors";
+import type { CollectionEntry } from "astro:content";
+import Head from "../components/base/Head.astro";
+import Body from "../components/base/Body.astro";
+import { isURL, formatPathOrURL } from "../utilities";
+
+type schema = CollectionEntry<"articles">["data"];
+
+interface Props extends schema {
+    body: string;
+}
+
+const { title, date, cover_image, body } = Astro.props;
+
+// the reason were using 247 here is that the additional '...'
+// adds 3 characters to the text, so to have a limit of 250
+// we subtract 3
+const description = truncateText(body, 247);
+
+const url = Astro.url.href;
+
+let imageUrl;
+
+if (isURL(cover_image)) {
+    imageUrl = cover_image;
+} else {
+    imageUrl = formatPathOrURL(Astro.url.origin, cover_image);
+}
+
+// const imageUrl = `${Astro.url.origin}${cover_image}`;
+---
+
+<!doctype html>
+<html lang="id">
+    <Head>
+        <title>{title}</title>
+        <meta property="og:title" content={title} data-pagefind-meta="title[content]" />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="article" data-pagefind-filter="type[content]" />
+        <meta property="og:url" content={url} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={imageUrl} data-pagefind-meta="image[content]" />
+        <meta name="theme-color" content={Colors.blue[600]} data-react-helmet="true" />
+        <meta
+            property="article:published_time"
+            content={date.toISOString()}
+            data-pagefind-meta="published_time[content]"
+        />
+    </Head>
+    <Body>
+        <slot />
+    </Body>
+</html>
