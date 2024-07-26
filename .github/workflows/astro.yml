@@ -63,7 +63,7 @@ jobs:
 
             - name: Build Pagefind index
               run: |
-                  pagefind \
+                  pnpm dlx pagefind \
                     --site dist
               working-directory: ${{ env.BUILD_PATH }}
 

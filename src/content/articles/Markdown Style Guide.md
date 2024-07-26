@@ -202,7 +202,7 @@ Most <mark>salamanders</mark> are nocturnal, and hunt for insects, worms, and ot
 
 ### Output
 
-<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap cover_image format.
+<abbr title="Graphics Interchange Format">GIF</abbr> is a bitmap image format.
 
 H<sub>2</sub>O
 
