@@ -1,5 +1,5 @@
 import { defineConfig } from "astro/config";
-import tailwind from "@astrojs/tailwind";
+import tailwind from "@tailwindcss/vite";
 import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
 import pagefind from "astro-pagefind";
@@ -9,5 +9,8 @@ import markdownIntegration from "@astropub/md";
 export default defineConfig({
     site: "http://localhost:4321/",
     base: "/",
-    integrations: [tailwind(), mdx(), icon(), pagefind(), markdownIntegration()],
+    integrations: [mdx(), icon(), pagefind(), markdownIntegration()],
+    vite: {
+        plugins: [tailwind()],
+    },
 });
