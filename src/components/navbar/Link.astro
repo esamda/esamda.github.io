@@ -12,7 +12,7 @@ const { name, redirect, dropdown } = Astro.props;
 
 <li class="relative z-50 w-full lg:w-auto">
     <a
-        class="relative z-50 flex w-full cursor-pointer items-center justify-center bg-navbar py-4 text-navbar transition-all ease-in-out hover:bg-navbar-hover hover:backdrop-brightness-75 lg:h-auto lg:w-auto lg:px-6"
+        class="relative z-50 flex w-full cursor-pointer items-center justify-center bg-blue-900 py-4 text-white transition-all ease-in-out hover:bg-blue-950 hover:backdrop-brightness-75 lg:h-auto lg:w-auto lg:px-6"
         class:list={[{ "lg:py-8": !dropdown }]}
         href={formatPathOrURL(import.meta.env.BASE_URL, redirect)}>{name}</a
     >
