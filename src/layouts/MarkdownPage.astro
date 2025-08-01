@@ -1,6 +1,5 @@
 ---
 import { truncateText } from "../utilities";
-import Colors from "tailwindcss/colors";
 import Head from "../components/base/Head.astro";
 import Body from "../components/base/Body.astro";
 import Navbar from "../components/Navbar.astro";
@@ -29,7 +28,7 @@ const content = prependBaseUrl(rawContent(), import.meta.env.BASE_URL);
         <meta property="og:description" content={description} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={Astro.url.href} />
-        <meta name="theme-color" content={Colors.blue[600]} data-react-helmet="true" />
+        <meta name="theme-color" content="" data-react-helmet="true" />
     </Head>
     <Body>
         <header>
